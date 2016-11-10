@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using Ninject;
 using System.Web.Mvc;
+using Moq;
+using Store.Domain.Abstract;
+using Store.Domain;
 
 namespace Store.Infrastructure
 {
@@ -29,7 +32,15 @@ namespace Store.Infrastructure
 
         public void AddBindings()
         {
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(new List<Product>
+            {
+                new Product { Name = "Cup", Price = 15 },
+                new Product { Name = "Plate", Price = 23 },
+                new Product { Name = "Pan", Price = 40 }
+            });
 
+            kernel.Bind<IProductRepository>().ToConstant(mock.Object);
         }
     }
 }
