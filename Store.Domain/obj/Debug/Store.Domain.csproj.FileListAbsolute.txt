@@ -41,7 +41,6 @@ c:\Users\developer\documents\visual studio 2015\Projects\Store\Store.Domain\bin\
 c:\Users\developer\documents\visual studio 2015\Projects\Store\Store.Domain\bin\System.Web.WebPages.xml
 c:\Users\developer\documents\visual studio 2015\Projects\Store\Store.Domain\bin\System.Web.WebPages.Deployment.xml
 c:\Users\developer\documents\visual studio 2015\Projects\Store\Store.Domain\bin\System.Web.WebPages.Razor.xml
-c:\Users\developer\documents\visual studio 2015\Projects\Store\Store.Domain\obj\Debug\Store.Domain.csprojResolveAssemblyReference.cache
 c:\Users\developer\documents\visual studio 2015\Projects\Store\Store.Domain\obj\Debug\Store.Domain.dll
 c:\Users\developer\documents\visual studio 2015\Projects\Store\Store.Domain\obj\Debug\Store.Domain.pdb
 C:\Users\nos\Apps\StoreSample\Store.Domain\bin\ApplicationInsights.config

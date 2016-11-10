@@ -138,7 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IProductRepository.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="Entities\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup>

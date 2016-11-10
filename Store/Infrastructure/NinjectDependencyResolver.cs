@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Moq;
 using Store.Domain.Abstract;
 using Store.Domain;
+using Store.Domain.Entities;
 
 namespace Store.Infrastructure
 {
