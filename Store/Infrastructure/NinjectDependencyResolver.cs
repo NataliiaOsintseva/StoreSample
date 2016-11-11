@@ -38,7 +38,12 @@ namespace Store.Infrastructure
             {
                 new Product { Name = "Cup", Price = 15 },
                 new Product { Name = "Plate", Price = 23 },
-                new Product { Name = "Pan", Price = 40 }
+                new Product { Name = "Fork", Price = 9 },
+                new Product { Name = "Knife", Price = 9 },
+                new Product { Name = "Spoon", Price = 10 },
+                new Product { Name = "Soup bowl", Price = 15 },
+                new Product { Name = "Wine glass", Price = 30 },
+                new Product { Name = "Pan", Price = 68 }
             });
 
             kernel.Bind<IProductRepository>().ToConstant(mock.Object);

@@ -11,16 +11,19 @@ namespace Store.Controllers
     public class ProductController : Controller
     {
         private IProductRepository repository;
+        public int PageSize = 6;
 
         public ProductController(IProductRepository prodRepo)
         {
             this.repository = prodRepo;
         }
         
-        // GET: Product
-        public ViewResult List()
+        public ViewResult List(int page = 1)
         {
-            return View(repository.Products);
+            return View(repository.Products
+                .OrderBy(p => p.ProductID)
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize));
         }
     }
 }
