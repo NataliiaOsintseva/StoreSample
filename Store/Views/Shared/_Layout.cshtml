@@ -9,9 +9,18 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div>
-        @RenderBody()
+    <div class="navbar navbar-inverse" role="navigation">
+        <a class="navbar-brand" href="#">HOME GOODS STORE</a>
     </div>
+    <div class="row panel">
+        <div id="categories" class="col-xs-2">
+            Imagine something's here
+        </div>
+        <div class="col-xs-9">
+            @RenderBody()
+        </div>
+    </div>
+
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>

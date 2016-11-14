@@ -86,7 +86,6 @@ C:\Users\nos\Apps\StoreSample\Store.Domain\bin\System.Web.Razor.xml
 C:\Users\nos\Apps\StoreSample\Store.Domain\bin\System.Web.WebPages.xml
 C:\Users\nos\Apps\StoreSample\Store.Domain\bin\System.Web.WebPages.Deployment.xml
 C:\Users\nos\Apps\StoreSample\Store.Domain\bin\System.Web.WebPages.Razor.xml
-C:\Users\nos\Apps\StoreSample\Store.Domain\obj\Debug\Store.Domain.csprojResolveAssemblyReference.cache
 C:\Users\nos\Apps\StoreSample\Store.Domain\obj\Debug\Store.Domain.dll
 C:\Users\nos\Apps\StoreSample\Store.Domain\obj\Debug\Store.Domain.pdb
 C:\Users\nos\Apps\StoreSample\Store.Domain\bin\EntityFramework.dll
