@@ -15,7 +15,6 @@ C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\Store.Tests.dll.config
 C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\Store.Tests.dll
 C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\Store.Tests.pdb
 C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\Castle.Core.dll
-C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\Moq.dll
 C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\Ninject.dll
@@ -45,7 +44,6 @@ C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\System.Web.WebPages.xml
 C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\EntityFramework.xml
-C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
 C:\Users\nos\Apps\StoreSample\Store.Tests\obj\Debug\Store.Tests.csprojResolveAssemblyReference.cache
 C:\Users\nos\Apps\StoreSample\Store.Tests\obj\Debug\Store.Tests.dll
 C:\Users\nos\Apps\StoreSample\Store.Tests\obj\Debug\Store.Tests.pdb

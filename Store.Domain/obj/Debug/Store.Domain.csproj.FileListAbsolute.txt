@@ -92,3 +92,4 @@ C:\Users\nos\Apps\StoreSample\Store.Domain\bin\EntityFramework.dll
 C:\Users\nos\Apps\StoreSample\Store.Domain\bin\EntityFramework.SqlServer.dll
 C:\Users\nos\Apps\StoreSample\Store.Domain\bin\EntityFramework.xml
 C:\Users\nos\Apps\StoreSample\Store.Domain\bin\EntityFramework.SqlServer.xml
+C:\Users\nos\Apps\StoreSample\Store.Domain\obj\Debug\Store.Domain.csprojResolveAssemblyReference.cache

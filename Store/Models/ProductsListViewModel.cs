@@ -10,5 +10,6 @@ namespace Store.Models
     {
         public IEnumerable<Product> Products { get; set; }
         public PagingInfo PAgingInfo { get; set; }
+        public string CurrentCategory { get; set; }
     }
 }
