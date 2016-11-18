@@ -35,7 +35,7 @@ namespace Store.Domain.Entities
             return listCollection.Sum(p => p.Product.Price * p.Quantity);
         }
 
-        public void ClearList()
+        public void ClearCart()
         {
             listCollection.Clear();
         }

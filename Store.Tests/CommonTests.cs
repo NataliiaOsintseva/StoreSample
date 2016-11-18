@@ -12,7 +12,7 @@ using Store.Models;
 namespace Store.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class CommonTests
     {
         [TestMethod]
         public void Can_Paginate()
