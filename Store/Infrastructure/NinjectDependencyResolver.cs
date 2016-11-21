@@ -36,17 +36,17 @@ namespace Store.Infrastructure
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(new List<Product>
             {
-                new Product { Name = "Cup", Price = 15, Category = "Kitchen" },
-                new Product { Name = "Plate", Price = 23, Category = "Kitchen" },
-                new Product { Name = "Fork", Price = 9, Category = "Kitchen" },
-                new Product { Name = "Knife", Price = 9, Category = "Kitchen" },
-                new Product { Name = "Spoon", Price = 10, Category = "Kitchen" },
-                new Product { Name = "Soup bowl", Price = 15, Category = "Kitchen" },
-                new Product { Name = "Wine glass", Price = 30, Category = "Kitchen" },
-                new Product { Name = "Pan", Price = 68, Category = "Kitchen" },
-                new Product { Name = "Pillow", Price = 60, Category = "Bedroom" },
-                new Product { Name = "Cover", Price = 120, Category = "Bedroom" },
-                new Product { Name = "Blanket", Price = 80, Category = "Bedroom" }
+                new Product { ProductID = 0, Name = "Cup", Price = 15, Category = "Kitchen" },
+                new Product { ProductID = 1, Name = "Plate", Price = 23, Category = "Kitchen" },
+                new Product { ProductID = 2, Name = "Fork", Price = 9, Category = "Kitchen" },
+                new Product { ProductID = 3, Name = "Knife", Price = 9, Category = "Kitchen" },
+                new Product { ProductID = 4, Name = "Spoon", Price = 10, Category = "Kitchen" },
+                new Product { ProductID = 5, Name = "Soup bowl", Price = 15, Category = "Kitchen" },
+                new Product { ProductID = 6, Name = "Wine glass", Price = 30, Category = "Kitchen" },
+                new Product { ProductID = 7, Name = "Pan", Price = 68, Category = "Kitchen" },
+                new Product { ProductID = 8, Name = "Pillow", Price = 60, Category = "Bedroom" },
+                new Product { ProductID = 9, Name = "Cover", Price = 120, Category = "Bedroom" },
+                new Product { ProductID = 10, Name = "Blanket", Price = 80, Category = "Bedroom" }
             });
 
             kernel.Bind<IProductRepository>().ToConstant(mock.Object);

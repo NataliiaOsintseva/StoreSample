@@ -1,5 +1,6 @@
 ﻿using Store.Domain.Abstract;
 using Store.Domain.Entities;
+using Store.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,18 @@ namespace Store.Controllers
             repository = repo;
         }
 
+        public ViewResult Index(string returnUrl)
+        {
+            return View(new CartListViewModel
+            {
+                Cart = GetCart(),
+                ReturnUrl = returnUrl
+            });
+        }
+
         public RedirectToRouteResult AddToCart(int productId, string returnUrl)
         {
-            Product product = repository.Products.FirstOrDefault(p => p.ProductID == productId);
+            Product product = repository.Products.First(p => p.ProductID == productId);
             
             if (product != null)
             {

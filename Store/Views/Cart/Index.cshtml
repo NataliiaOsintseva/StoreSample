@@ -1,0 +1,43 @@
+﻿@model Store.Models.CartListViewModel
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+<h2>Your Cart</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Quantity</th>
+            <th>Item</th>
+            <th class="text-right">Price</th>
+            <th class="text-right">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var list in Model.Cart.Lists)
+        {
+            <tr>
+                <td class="text-center">@list.Quantity</td>
+                <td class="text-left">@list.Product.Name</td>
+                <td class="text-right">
+                    @list.Product.Price.ToString("c")
+            </td>
+            <td class="text-right">
+                @((list.Quantity * list.Product.Price).ToString("c"))
+            </td>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right">
+                @Model.Cart.CalculateTotalValue().ToString("c")
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<div class="text-center">
+    <a class="btn btn-primary" href="@Model.ReturnUrl"> Continue shopping</a>
+</div>

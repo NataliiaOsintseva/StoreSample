@@ -7,21 +7,21 @@ namespace Store.Domain.Entities
 {
     public class Cart
     {
-        private List<CartList> listCollection = new List<CartList>();
+        private List<CartListItem> listCollection = new List<CartListItem>();
 
         public void AddItem(Product product, int quantity)
         {
-            CartList line = listCollection
+            CartListItem list = listCollection
                 .Where(p => p.Product.ProductID == product.ProductID)
                 .FirstOrDefault();
 
-            if (line == null)
+            if (list == null)
             {
-                listCollection.Add(new CartList { Product = product, Quantity = quantity });
+                listCollection.Add(new CartListItem { Product = product, Quantity = quantity });
             }
             else
             {
-                line.Quantity += quantity;
+                list.Quantity += quantity;
             }
         }
 
@@ -40,14 +40,14 @@ namespace Store.Domain.Entities
             listCollection.Clear();
         }
 
-        public IEnumerable<CartList> Lists
+        public IEnumerable<CartListItem> Lists
         {
             get { return listCollection; }
         }
 
     }
 
-    public class CartList
+    public class CartListItem
     {
         public Product Product { get; set; }
         public int Quantity { get; set; }

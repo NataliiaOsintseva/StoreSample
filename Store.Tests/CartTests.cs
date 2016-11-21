@@ -24,7 +24,7 @@ namespace Store.Tests
             // Act
             target.AddItem(p1, 1);
             target.AddItem(p2, 1);
-            CartList[] results = target.Lists.ToArray();
+            CartListItem[] results = target.Lists.ToArray();
             // Assert
             Assert.AreEqual(results.Length, 2);
             Assert.AreEqual(results[0].Product, p1);
@@ -43,7 +43,7 @@ namespace Store.Tests
             target.AddItem(p1, 1);
             target.AddItem(p2, 4);
             target.AddItem(p1, 10);
-            CartList[] results = target.Lists.OrderBy(c =>
+            CartListItem[] results = target.Lists.OrderBy(c =>
             c.Product.ProductID).ToArray();
 
             // Verify

@@ -93,3 +93,8 @@ C:\Users\nos\Apps\StoreSample\Store.Domain\bin\EntityFramework.SqlServer.dll
 C:\Users\nos\Apps\StoreSample\Store.Domain\bin\EntityFramework.xml
 C:\Users\nos\Apps\StoreSample\Store.Domain\bin\EntityFramework.SqlServer.xml
 C:\Users\nos\Apps\StoreSample\Store.Domain\obj\Debug\Store.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Developer\documents\visual studio 2015\Projects\Store\Store.Domain\bin\EntityFramework.dll
+C:\Users\Developer\documents\visual studio 2015\Projects\Store\Store.Domain\bin\EntityFramework.SqlServer.dll
+C:\Users\Developer\documents\visual studio 2015\Projects\Store\Store.Domain\bin\EntityFramework.xml
+C:\Users\Developer\documents\visual studio 2015\Projects\Store\Store.Domain\bin\EntityFramework.SqlServer.xml
+C:\Users\Developer\documents\visual studio 2015\Projects\Store\Store.Domain\obj\Debug\Store.Domain.csprojResolveAssemblyReference.cache
