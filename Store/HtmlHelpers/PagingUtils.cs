@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Store.HtmlHelpers
 {
-    public static class PagingHelpers
+    public static class PagingUtils
     {
         public static MvcHtmlString PageLinks(this HtmlHelper html,
         PagingInfo pagingInfo,

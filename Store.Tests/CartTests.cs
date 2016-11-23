@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Store.Models;
+using System.Web.Mvc;
 
 namespace Store.Tests
 {
@@ -15,20 +16,65 @@ namespace Store.Tests
     public class CartTests
     {
         [TestMethod]
-        public void Can_Add_New_Lists()
+        public void Can_Add_To_Cart()
         {
-            Product p1 = new Product { ProductID = 1, Name = "P1" };            Product p2 = new Product { ProductID = 2, Name = "P2" };
+            // Prepare data - create mock repo
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[] {
+                new Product { ProductID = 1, Name = "P1", Category = "Bathroom" },
+                new Product { ProductID = 2, Name = "P2", Category = "Living Room" }
+            }.AsQueryable());
+
+            // Prepare data - create a new cart and fill it
+            Cart cart = new Cart();
+            CartController target = new CartController(mock.Object);
+            target.AddToCart(cart, 1, null);
+            target.AddToCart(cart, 2, null);
+
+            // Assert
+            Assert.AreEqual(2, cart.Lists.Count());
+            Assert.AreEqual("P1", cart.Lists.ToArray()[0].Product.Name);
+            Assert.AreEqual("P2", cart.Lists.ToArray()[1].Product.Name);
+        }
+
+        [TestMethod]
+        public void Redirects_After_Adding_To_Cart()
+        {
+            // Prepare data - create mock repo
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[] {
+                new Product { ProductID = 1, Name = "P1", Category = "Bathroom" },
+                new Product { ProductID = 2, Name = "P2", Category = "Living Room" }
+            });
+
+            // Prepare data - create a new cart and fill it
+            Cart cart = new Cart();
+            CartController target = new CartController(mock.Object);
+            RedirectToRouteResult result = target.AddToCart(cart, 1, "mockingUrl");
+
+            // Assert
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+            Assert.AreEqual("mockingUrl", result.RouteValues["returnUrl"]);
+        }
+
+        [TestMethod]
+        public void Can_Add_New_List_Items()
+        {
+            Product p1 = new Product { ProductID = 1, Name = "P1" };
+            Product p2 = new Product { ProductID = 2, Name = "P2" };
             
-            // Arrange - create a new cart
+            // Prepare data - create a new cart and fill it
             Cart target = new Cart();
-            // Act
             target.AddItem(p1, 1);
             target.AddItem(p2, 1);
+
             CartListItem[] results = target.Lists.ToArray();
+
             // Assert
             Assert.AreEqual(results.Length, 2);
             Assert.AreEqual(results[0].Product, p1);
-            Assert.AreEqual(results[1].Product, p2);
+            Assert.AreEqual(results[1].Product, p2);
+
         }
 
         [TestMethod]
