@@ -15,6 +15,26 @@ namespace Store.Tests
     [TestClass]
     public class CartTests
     {
+
+        [TestMethod]
+        public void Validates_If_Cart_Is_Empty()
+        {
+            // Prepare data - create mock order
+            Mock<IOrder> mock = new Mock<IOrder>();
+            // Prepare data - create a new cart and fill it
+            Cart cart = new Cart();
+            Shipment shipment = new Shipment();
+
+            CartController target = new CartController(null, mock.Object);
+            ViewResult result = target.Checkout(cart, shipment);
+
+            // Assert
+            mock.Verify(m => m.ProcessOrder(It.IsAny<Cart>(), It.IsAny<Shipment>()),
+                Times.Never());
+            Assert.AreEqual("", result.ViewName);
+            Assert.AreEqual(false, result.ViewData.ModelState.IsValid);
+        }
+
         [TestMethod]
         public void Can_Add_To_Cart()
         {
@@ -27,7 +47,7 @@ namespace Store.Tests
 
             // Prepare data - create a new cart and fill it
             Cart cart = new Cart();
-            CartController target = new CartController(mock.Object);
+            CartController target = new CartController(mock.Object, null);
             target.AddToCart(cart, 1, null);
             target.AddToCart(cart, 2, null);
 
@@ -49,7 +69,7 @@ namespace Store.Tests
 
             // Prepare data - create a new cart and fill it
             Cart cart = new Cart();
-            CartController target = new CartController(mock.Object);
+            CartController target = new CartController(mock.Object, null);
             RedirectToRouteResult result = target.AddToCart(cart, 1, "mockingUrl");
 
             // Assert
@@ -163,6 +183,7 @@ namespace Store.Tests
             Assert.AreEqual(target.Lists.Count(), 0);
             Assert.AreEqual(target.CalculateTotalValue(), 0);
         }
+
 
 
     }

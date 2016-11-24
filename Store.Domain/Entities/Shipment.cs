@@ -12,6 +12,7 @@ namespace Store.Domain.Entities
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Insert your address")]
+        [Display(Name = "Home address")]
         public string HomeAddress { get; set; }
         public string City { get; set; }
         public string Country { get; set; }

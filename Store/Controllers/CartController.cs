@@ -12,10 +12,12 @@ namespace Store.Controllers
     public class CartController : Controller
     {
         private IProductRepository repository;
+        private IOrder order;
 
-        public CartController(IProductRepository repo)
+        public CartController(IProductRepository repo, IOrder ord)
         {
             repository = repo;
+            order = ord;
         }
 
         public ViewResult Index(Cart cart, string returnUrl)
@@ -58,6 +60,26 @@ namespace Store.Controllers
         public ViewResult Checkout()
         {
             return View(new Shipment());
+        }
+
+        [HttpPost] // Will be invoked after user presses 'submit' btn
+        public ViewResult Checkout(Cart cart, Shipment shipment)
+        {
+            if (cart.Lists.Count() == 0)
+            {
+                ModelState.AddModelError("", "There is no items in the order!");
+            }
+
+            if (ModelState.IsValid)
+            {
+                order.ProcessOrder(cart, shipment);
+                cart.ClearCart();
+                return View("Completed");
+            }
+            else
+            {
+                return View(shipment);
+            }
         }
 
     }

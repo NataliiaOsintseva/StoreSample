@@ -8,6 +8,8 @@ using Moq;
 using Store.Domain.Abstract;
 using Store.Domain;
 using Store.Domain.Entities;
+using Store.Domain.Concrete;
+using System.Configuration;
 
 namespace Store.Infrastructure
 {
@@ -50,6 +52,13 @@ namespace Store.Infrastructure
             });
 
             kernel.Bind<IProductRepository>().ToConstant(mock.Object);
+
+            EmailSettings settings = new EmailSettings
+            {
+                WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false")
+            };
+
+            kernel.Bind<IOrder>().To<OrderProcessor>().WithConstructorArgument("settings", settings);
         }
     }
 }
