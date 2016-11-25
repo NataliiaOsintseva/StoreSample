@@ -6,11 +6,22 @@
     <title>@ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ErrorStyles.css" rel="stylesheet"/>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <style>
+        .navbar-right {
+            float: right !important;
+            margin-right: 15px; margin-left: 15px; 
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse" role="navigation">
-        <a class="navbar-brand" href="#">HOME GOODS STORE</a>
+        <a class="navbar-brand" href="#">
+            <span class="hidden-xs">HOME GOODS STORE</span>
+            <div class="visible-xs">HOME GOODS</div>
+            <div class="visible-xs">STORE</div>
+        </a>
         @Html.Action("Summary", "Cart")
     </div>
     <div class="row panel">
