@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Store.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AdminController : Controller
     {
         private IProductRepository repository;
