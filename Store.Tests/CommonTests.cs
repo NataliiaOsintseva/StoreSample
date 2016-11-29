@@ -15,7 +15,7 @@ namespace Store.Tests
     public class CommonTests
     {
         [TestMethod]
-        public void Can_Paginate()
+        public void Verify_Pagination()
         {
             // Prepare test data
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
@@ -39,7 +39,7 @@ namespace Store.Tests
         }
 
         [TestMethod]
-        public void Can_Use_PaginationViewModel()
+        public void Verify_PaginationViewModel()
         {
             // Prepare test data
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
@@ -64,7 +64,7 @@ namespace Store.Tests
         }
 
         [TestMethod]
-        public void Can_Filter()
+        public void Verify_Filtering()
         {
             // Prepare test data
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
@@ -87,7 +87,7 @@ namespace Store.Tests
         }
 
         [TestMethod]
-        public void Can_Categorize()
+        public void Verify_Categorization()
         {
             // Prepare test data
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
@@ -112,7 +112,7 @@ namespace Store.Tests
         }
 
         [TestMethod]
-        public void Indicates_Selected_Category()
+        public void Verify_Indication_Of_Selected_Category()
         {
             // Prepare test data
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
@@ -131,7 +131,7 @@ namespace Store.Tests
         }
 
         [TestMethod]
-        public void Arranges_Products_To_Categories()
+        public void Veify_Products_Arranged_To_Categories()
         {
             // Prepare test data
             Mock<IProductRepository> mock = new Mock<IProductRepository>();

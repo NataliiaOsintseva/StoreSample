@@ -25,8 +25,8 @@ namespace Store.Tests
             Cart cart = new Cart();
             Shipment shipment = new Shipment();
 
-            CartController target = new CartController(null, mock.Object);
-            ViewResult result = target.Checkout(cart, shipment);
+            CartController controller = new CartController(null, mock.Object);
+            ViewResult result = controller.Checkout(cart, shipment);
 
             // Assert
             mock.Verify(m => m.ProcessOrder(It.IsAny<Cart>(), It.IsAny<Shipment>()),
@@ -47,9 +47,9 @@ namespace Store.Tests
 
             // Prepare data - create a new cart and fill it
             Cart cart = new Cart();
-            CartController target = new CartController(mock.Object, null);
-            target.AddToCart(cart, 1, null);
-            target.AddToCart(cart, 2, null);
+            CartController controller = new CartController(mock.Object, null);
+            controller.AddToCart(cart, 1, null);
+            controller.AddToCart(cart, 2, null);
 
             // Assert
             Assert.AreEqual(2, cart.Lists.Count());
@@ -69,8 +69,8 @@ namespace Store.Tests
 
             // Prepare data - create a new cart and fill it
             Cart cart = new Cart();
-            CartController target = new CartController(mock.Object, null);
-            RedirectToRouteResult result = target.AddToCart(cart, 1, "mockingUrl");
+            CartController controller = new CartController(mock.Object, null);
+            RedirectToRouteResult result = controller.AddToCart(cart, 1, "mockingUrl");
 
             // Assert
             Assert.AreEqual("Index", result.RouteValues["action"]);
@@ -84,11 +84,11 @@ namespace Store.Tests
             Product p2 = new Product { ProductID = 2, Name = "P2" };
             
             // Prepare data - create a new cart and fill it
-            Cart target = new Cart();
-            target.AddItem(p1, 1);
-            target.AddItem(p2, 1);
+            Cart cart = new Cart();
+            cart.AddItem(p1, 1);
+            cart.AddItem(p2, 1);
 
-            CartListItem[] results = target.Lists.ToArray();
+            CartListItem[] results = cart.Lists.ToArray();
 
             // Assert
             Assert.AreEqual(results.Length, 2);
@@ -98,18 +98,18 @@ namespace Store.Tests
         }
 
         [TestMethod]
-        public void Can_Add_Quantity_For_Existing_Lines()
+        public void Can_Modify_Quantity_For_Existing_Items()
         {
             // Arrange - create test products
             Product p1 = new Product { ProductID = 1, Name = "P1" };
             Product p2 = new Product { ProductID = 2, Name = "P2" };
             
             // Act - create and fill a new cart
-            Cart target = new Cart();
-            target.AddItem(p1, 1);
-            target.AddItem(p2, 4);
-            target.AddItem(p1, 10);
-            CartListItem[] results = target.Lists.OrderBy(c =>
+            Cart cart = new Cart();
+            cart.AddItem(p1, 1);
+            cart.AddItem(p2, 4);
+            cart.AddItem(p1, 10);
+            CartListItem[] results = cart.Lists.OrderBy(c =>
             c.Product.ProductID).ToArray();
 
             // Verify
@@ -119,7 +119,7 @@ namespace Store.Tests
         }
 
         [TestMethod]
-        public void Can_Remove_From_List()
+        public void Can_Remove_Item_From_List()
         {
             // Arrange - create test products
             Product p1 = new Product { ProductID = 1, Name = "P1" };
@@ -127,17 +127,17 @@ namespace Store.Tests
             Product p3 = new Product { ProductID = 3, Name = "P3" };
 
             // Act - create and fill a new cart
-            Cart target = new Cart();
-            target.AddItem(p1, 1);
-            target.AddItem(p2, 4);
-            target.AddItem(p3, 10);
-            target.AddItem(p2, 5);
+            Cart cart = new Cart();
+            cart.AddItem(p1, 1);
+            cart.AddItem(p2, 4);
+            cart.AddItem(p3, 10);
+            cart.AddItem(p2, 5);
 
-            target.RemoveFromList(p2);
+            cart.RemoveFromList(p2);
 
             // Verify
-            Assert.AreEqual(target.Lists.Where(c => c.Product == p2).Count(), 0);
-            Assert.AreEqual(target.Lists.Count(), 2);
+            Assert.AreEqual(cart.Lists.Where(c => c.Product == p2).Count(), 0);
+            Assert.AreEqual(cart.Lists.Count(), 2);
 
         }
 
@@ -150,12 +150,12 @@ namespace Store.Tests
             Product p3 = new Product { ProductID = 3, Name = "P3", Price = 10M };
 
             // Act - create and fill a new cart
-            Cart target = new Cart();
-            target.AddItem(p1, 1);
-            target.AddItem(p2, 4);
-            target.AddItem(p3, 10);
+            Cart cart = new Cart();
+            cart.AddItem(p1, 1);
+            cart.AddItem(p2, 4);
+            cart.AddItem(p3, 10);
 
-            decimal res = target.CalculateTotalValue();
+            decimal res = cart.CalculateTotalValue();
 
             // Verify
             Assert.AreEqual(178, res);
@@ -171,17 +171,17 @@ namespace Store.Tests
             Product p3 = new Product { ProductID = 3, Name = "P3", Price = 10M };
 
             // Act - create and fill a new cart
-            Cart target = new Cart();
-            target.AddItem(p1, 5);
-            target.AddItem(p2, 5);
-            target.AddItem(p3, 6);
+            Cart cart = new Cart();
+            cart.AddItem(p1, 5);
+            cart.AddItem(p2, 5);
+            cart.AddItem(p3, 6);
 
-            target.ClearCart();
+            cart.ClearCart();
             // TODO: ask about anonymous objects
             // Console.WriteLine(new { ProductID = 3, Name = "P3", Price = 10M });
 
-            Assert.AreEqual(target.Lists.Count(), 0);
-            Assert.AreEqual(target.CalculateTotalValue(), 0);
+            Assert.AreEqual(cart.Lists.Count(), 0);
+            Assert.AreEqual(cart.CalculateTotalValue(), 0);
         }
 
 

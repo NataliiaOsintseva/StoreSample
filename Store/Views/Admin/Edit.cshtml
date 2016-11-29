@@ -1,0 +1,54 @@
+﻿@model Store.Domain.Entities.Product
+
+@{
+    ViewBag.Title = "Admin module: editing " + Model.Name;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Editing @Model.Name</h3>
+    </div>
+
+    @using (Html.BeginForm("Edit", "Admin"))
+    {
+        <div class="panel-body">
+            @Html.HiddenFor(p => p.ProductID)
+            @foreach (var prop in ViewData.ModelMetadata.Properties)
+            {
+                if (prop.PropertyName != "ProductID" && prop.PropertyName != "Color")
+                {
+                    <div class="form-group">
+                        <label>@(prop.DisplayName ?? prop.PropertyName)</label>
+                    </div>
+                    if (prop.PropertyName == "Description")
+                    {
+                        @Html.TextArea(prop.PropertyName, null, new { @class = "form-control", rows = 5 })
+                    }
+                    else if (prop.PropertyName == "Color")
+                    {
+                        
+                        foreach (var kvp in prop.PropertyName)
+                        {
+                            @Html.Label(kvp.ToString());
+                            //@Html.TextBoxFor(m => m.Color[kvp.Key])
+                        }
+
+                    }
+                    else
+                    {
+                        @Html.TextBox(prop.PropertyName, null, new { @class = "form-control" })
+                    }
+                    @Html.ValidationMessage(prop.PropertyName);
+                }
+            }
+
+        </div>
+
+        <div class="panel-footer">
+            <input type="submit" value="Save" class="btn btn-success" />
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+
+        </div>
+    }
+</div>

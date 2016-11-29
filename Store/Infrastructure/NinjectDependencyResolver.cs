@@ -6,7 +6,8 @@ using Ninject;
 using System.Web.Mvc;
 using Moq;
 using Store.Domain.Abstract;
-using Store.Domain;
+using Store.Infrastructure.Abstract;
+using Store.Infrastructure.Concrete;
 using Store.Domain.Entities;
 using Store.Domain.Concrete;
 using System.Configuration;
@@ -59,6 +60,7 @@ namespace Store.Infrastructure
             };
 
             kernel.Bind<IOrder>().To<OrderProcessor>().WithConstructorArgument("settings", settings);
+            kernel.Bind<IAuthenticated>().To<Authenticator>();
         }
     }
 }
