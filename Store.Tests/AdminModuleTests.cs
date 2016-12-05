@@ -4,14 +4,39 @@ using Moq;
 using Store.Domain.Abstract;
 using Store.Controllers;
 using Store.Domain.Entities;
+using Store.Infrastructure.Abstract;
 using System.Collections.Generic;
 using System.Linq;
+using Store.Models;
 
 namespace Store.Tests
 {
     [TestClass]
     public class AdminModuleTests
     {
+        [TestMethod]
+        public void Login_Valid_Credentials()
+        {
+            // Prepare data - create mock auth
+            Mock<IAuthenticated> mock = new Mock<IAuthenticated>();
+            mock.Setup(m => m.Authenticate("adminUser", "adminPass")).Returns(true);
+
+            // Prepare data - create model
+            LoginModel model = new LoginModel
+            {
+                UserName = "adminUser",
+                Password = "adminPass"
+            };
+
+            AccountController controller = new AccountController(mock.Object);
+            ActionResult result = controller.Login(model, "/TestUrl");
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(RedirectResult));
+            Assert.AreEqual("/TestUrl", ((RedirectResult)result).Url);
+
+        }
+
         [TestMethod]
         public void Admin_Verify_All_Products_Present()
         {

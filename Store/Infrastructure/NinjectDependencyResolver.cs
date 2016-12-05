@@ -36,6 +36,7 @@ namespace Store.Infrastructure
 
         public void AddBindings()
         {
+            //Uncomment to try using app without database
             //Mock<IProductRepository> mock = new Mock<IProductRepository>();
             //mock.Setup(m => m.Products).Returns(new List<Product>
             //{

@@ -43,7 +43,7 @@ namespace Store.Domain.Concrete
                     dbEntity.Name = product.Name;
                     dbEntity.Description = product.Description;
                     dbEntity.Category = product.Category;
-                    dbEntity.Color = product.Color;
+                    //dbEntity.Color = product.Color;
                     dbEntity.Price = product.Price;
                     dbEntity.Image = product.Image;
                 }

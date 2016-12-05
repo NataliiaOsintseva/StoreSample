@@ -27,8 +27,8 @@ namespace Store.Domain.Entities
         [Required(ErrorMessage = "Specify category, please")]
         public string Category { get; set; }
 
-        [Required(ErrorMessage = "Specify product color, please")]
-        public Dictionary<ProductColors, bool> Color { get; set; }
+        //[Required(ErrorMessage = "Specify product color, please")]
+        //public Dictionary<ProductColors, bool> Color { get; set; }
         
         [DataType(DataType.ImageUrl)]
         public string Image { get; set; }

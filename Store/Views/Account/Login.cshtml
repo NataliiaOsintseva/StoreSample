@@ -1,0 +1,27 @@
+﻿@model Store.Models.LoginModel
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Admin module: log in";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Log in</h3>
+    </div>
+    <div class="panel-body">
+        <p class="lead">Log in to continue in admin module</p>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+            <div class="form-group">
+                <label>Insert user name:</label>
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control"})
+            </div>
+            <div class="form-control">
+                <label>Insert Password:</label>
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control"})
+            </div>
+            <input type="submit" value="Log in" class="btn btn-primary"/>
+        }
+    </div>
+</div>

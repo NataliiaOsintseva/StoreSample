@@ -1,5 +1,6 @@
 ﻿using Store.Domain.Abstract;
 using Store.Domain.Entities;
+using Store.Domain.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Store.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class AdminController : Controller
     {
         private IProductRepository repository;
@@ -48,7 +49,7 @@ namespace Store.Controllers
         {
             return View("Edit", new Product());
         }
-
+         
         [HttpPost]
         public ActionResult Delete(int productId)
         {
