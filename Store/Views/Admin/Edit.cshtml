@@ -10,39 +10,58 @@
         <h3>Editing @Model.Name</h3>
     </div>
 
-    @using (Html.BeginForm("Edit", "Admin"))
+    @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="panel-body">
             @Html.HiddenFor(p => p.ProductID)
             @foreach (var prop in ViewData.ModelMetadata.Properties)
-            {
-                if (prop.PropertyName != "ProductID" && prop.PropertyName != "Color")
-                {
-                    <div class="form-group">
-                        <label>@(prop.DisplayName ?? prop.PropertyName)</label>
-                    </div>
-                    if (prop.PropertyName == "Description")
-                    {
-                        @Html.TextArea(prop.PropertyName, null, new { @class = "form-control", rows = 5 })
-                    }
-                    else if (prop.PropertyName == "Color")
-                    {
-                        
-                        foreach (var kvp in prop.PropertyName)
                         {
-                            @Html.Label(kvp.ToString());
-                            //@Html.TextBoxFor(m => m.Color[kvp.Key])
-                        }
-
-                    }
-                    else
-                    {
-                        @Html.TextBox(prop.PropertyName, null, new { @class = "form-control" })
-                    }
-                    @Html.ValidationMessage(prop.PropertyName);
+                            switch (prop.PropertyName)
+                            {
+                                case "ProductID":
+                                case "Image":
+                                case "ImageMimeType":
+                                    break;
+                                default:
+                        <div class="form-group">
+                            <label>@prop.PropertyName</label>
+                            @if (prop.PropertyName == "Description")
+                            {
+                                @Html.TextArea(prop.PropertyName, null, new { @class = "form-control", rows = 5})
+                            }
+                            else
+                            {
+                                @Html.TextBox(prop.PropertyName, null, new { @class = "form-control" })
+                            }
+                            @Html.ValidationMessage(prop.PropertyName)
+                        </div>
+                        break;
                 }
             }
 
+            <div class="form-group">
+                <div style="position:relative">
+                    <label>Image</label>
+                    <a class="btn" href="javascript:;">
+                        Select file to upload
+                        <input type="file" name="Image" size="40" style="position:absolute;z-index:2;
+top:0; left:0; filter: alpha(opacity=0); opacity:0; background-color:transparent;color:transparent;"
+                               onchange='$("#upload-file-info").html($(this).val());'/>
+                    </a>
+                    <span class="label label-info" id="upload-file-info"></span>
+                </div>
+                @if (Model.Image == null)
+                {
+                    <div class="form-control-static">
+                        No Image
+                    </div>
+                }
+                else
+                {
+                    <img class="img-thumbnail" width="150" height="150" src="@Url.Action("GetImage", "Product", new { Model.ProductID })"/>
+                }
+
+            </div>
         </div>
 
         <div class="panel-footer">

@@ -46,6 +46,7 @@ namespace Store.Domain.Concrete
                     //dbEntity.Color = product.Color;
                     dbEntity.Price = product.Price;
                     dbEntity.Image = product.Image;
+                    dbEntity.ImageMimeType = product.ImageMimeType;
                 }
             }
             context.SaveChanges();

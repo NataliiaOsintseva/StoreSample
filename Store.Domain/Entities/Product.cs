@@ -29,9 +29,9 @@ namespace Store.Domain.Entities
 
         //[Required(ErrorMessage = "Specify product color, please")]
         //public Dictionary<ProductColors, bool> Color { get; set; }
-        
-        [DataType(DataType.ImageUrl)]
-        public string Image { get; set; }
+
+        public byte[] Image { get; set; }
+        public string ImageMimeType { get; set; }
     }
 
     public enum ProductColors

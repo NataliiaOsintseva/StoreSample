@@ -34,7 +34,28 @@ namespace Store.Tests
             // Assert
             Assert.IsInstanceOfType(result, typeof(RedirectResult));
             Assert.AreEqual("/TestUrl", ((RedirectResult)result).Url);
+        }
 
+        [TestMethod]
+        public void Login_Invalid_Credentials()
+        {
+            // Prepare data - create mock auth
+            Mock<IAuthenticated> mock = new Mock<IAuthenticated>();
+            mock.Setup(m => m.Authenticate("adminUser", "wrongPass")).Returns(false);
+
+            // Prepare data - create model
+            LoginModel model = new LoginModel
+            {
+                UserName = "adminUser",
+                Password = "wrongPass"
+            };
+
+            AccountController controller = new AccountController(mock.Object);
+            ActionResult result = controller.Login(model, "/TestUrl");
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            Assert.IsFalse(((ViewResult)result).ViewData.ModelState.IsValid);
         }
 
         [TestMethod]

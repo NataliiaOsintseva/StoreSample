@@ -18,7 +18,20 @@ namespace Store.Controllers
         {
             this.repository = prodRepo;
         }
-        
+
+        public FileContentResult GetImage(int productId)
+        {
+            Product product = repository.Products.FirstOrDefault(p => p.ProductID == productId);
+            if(product != null)
+            {
+                return File(product.Image, product.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public ViewResult List(string category, int page = 1)
         {
             ProductsListViewModel model = new ProductsListViewModel

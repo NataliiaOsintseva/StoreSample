@@ -31,10 +31,16 @@ namespace Store.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(Product product, HttpPostedFileBase image = null)
         {
             if (ModelState.IsValid)
             {
+                if (image != null)
+                {
+                    product.ImageMimeType = image.ContentType;
+                    product.Image = new byte[image.ContentLength];
+                    image.InputStream.Read(product.Image, 0, image.ContentLength);
+                }
                 repository.Save(product);
                 TempData["message"] = string.Format($"{product.Name} has been saved");
                 return RedirectToAction("Index");
