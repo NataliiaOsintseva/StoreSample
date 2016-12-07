@@ -29,6 +29,7 @@ namespace Store.Domain.Concrete
             return dbEntity;
         }
 
+
         public void Save(Product product)
         {
             if (product.ProductID == 0)
@@ -45,7 +46,7 @@ namespace Store.Domain.Concrete
                     dbEntity.Category = product.Category;
                     //dbEntity.Color = product.Color;
                     dbEntity.Price = product.Price;
-                    dbEntity.Image = product.Image;
+                    //dbEntity.Image = product.Image;
                     dbEntity.ImageMimeType = product.ImageMimeType;
                 }
             }

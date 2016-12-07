@@ -15,6 +15,29 @@ namespace Store.Tests
     public class AdminModuleTests
     {
         [TestMethod]
+        public void Can_Get_Product_Image()
+        {
+            // Prepare data - create product with image
+            Product product = new Product { ProductID = 0, Name = "P0", ImageData = new byte[] { }, ImageMimeType = "image/jpg" };
+            
+            // Prepare data - create mock repo
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[] {
+                product,
+                new Product { ProductID = 1, Name = "P1" },
+                new Product { ProductID = 2, Name = "P2" }
+            }.AsQueryable());
+
+            // Prepare data - create controller
+            ProductController controller = new ProductController(mock.Object);
+            ActionResult result = controller.GetImage(0);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(FileResult));
+            Assert.AreEqual(product.ImageMimeType, ((FileResult)result).ContentType);
+        }
+
+        [TestMethod]
         public void Login_Valid_Credentials()
         {
             // Prepare data - create mock auth

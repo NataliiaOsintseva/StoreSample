@@ -3,6 +3,7 @@ using Store.Domain.Entities;
 using Store.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,7 +25,7 @@ namespace Store.Controllers
             Product product = repository.Products.FirstOrDefault(p => p.ProductID == productId);
             if(product != null)
             {
-                return File(product.Image, product.ImageMimeType);
+                return File(product.ImageData, product.ImageMimeType);
             }
             else
             {
@@ -53,5 +54,8 @@ namespace Store.Controllers
             };
             return View(model);
         }
+
+
+
     }
 }

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Store.Infrastructure.Binders;
 using Store.Domain.Entities;
+using Store.App_Start;
 
 namespace Store
 {
@@ -17,6 +18,7 @@ namespace Store
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             ModelBinders.Binders.Add(typeof(Cart), new CartBinder());
+            MappingConfig.RegisterMaps();
         }
     }
 }

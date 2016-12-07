@@ -96,3 +96,5 @@ C:\Users\Developer\Documents\Visual Studio 2015\Projects\Store\Store.Tests\bin\D
 C:\Users\Developer\Documents\Visual Studio 2015\Projects\Store\Store.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\Developer\Documents\Visual Studio 2015\Projects\Store\Store.Tests\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\Developer\Documents\Visual Studio 2015\Projects\Store\Store.Tests\bin\Debug\EntityFramework.xml
+C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\AutoMapper.dll
+C:\Users\nos\Apps\StoreSample\Store.Tests\bin\Debug\AutoMapper.xml
