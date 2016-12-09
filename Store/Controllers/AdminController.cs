@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using Store.Models;
+using AutoMapper;
 
 namespace Store.Controllers
 {
@@ -40,17 +41,17 @@ namespace Store.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(EditProductViewModel product, HttpPostedFileBase upload = null)
+        public ActionResult Edit(EditProductViewModel vm, int productID,  HttpPostedFileBase upload = null)
         {
-            
 
+            var product = Mapper.Map<Product>(vm);
             if (ModelState.IsValid)
-            {
+            {                
                 if (upload != null && upload.ContentLength > 0)
                 {
                     product.ImageMimeType = upload.ContentType;
-                    product.Image = upload;
-                    
+                    product.ImageData = convertToByteArray(upload);
+
                     //upload.InputStream.Read(product.Image, 0, upload.ContentLength);
                 }
                 repository.Save(product);
@@ -77,6 +78,14 @@ namespace Store.Controllers
                 TempData["message"] = string.Format($"{prodToDelete.Name} has been successfully deleted");
             }
             return RedirectToAction("Index");
+        }
+
+        private byte[] convertToByteArray(HttpPostedFileBase file)
+        {
+            byte[] image = null;
+            BinaryReader reader = new BinaryReader(file.InputStream);
+            image = reader.ReadBytes(file.ContentLength);
+            return image;
         }
     }
 }

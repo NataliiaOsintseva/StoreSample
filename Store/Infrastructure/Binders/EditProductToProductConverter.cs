@@ -14,7 +14,7 @@ namespace Store.Infrastructure.Binders
     {
         public Product Convert(EditProductViewModel source, Product destination, ResolutionContext context)
         {
-            destination.ImageData = convertToByteArray(source.Image);
+            //destination.ImageData = convertToByteArray(source.Image);
             return destination;
         }
 

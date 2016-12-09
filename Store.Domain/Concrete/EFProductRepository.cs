@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Store.Domain.Entities;
+using System.Data.Entity;
 
 namespace Store.Domain.Concrete
 {
@@ -29,6 +30,28 @@ namespace Store.Domain.Concrete
             return dbEntity;
         }
 
+        private Product GetProduct(int productID)
+        {
+            if (productID == 0)
+            {
+                return new Product();
+            }
+            else
+            {
+                return context.Products.Find(productID);
+            }
+        }
+
+        public void Update(Product prod)
+        {
+            context.Entry(prod).State = EntityState.Modified;
+        }
+
+        public void SaveChanges()
+        {
+            context.SaveChanges();
+        }
+
 
         public void Save(Product product)
         {
@@ -47,7 +70,7 @@ namespace Store.Domain.Concrete
                     //dbEntity.Color = product.Color;
                     dbEntity.Price = product.Price;
                     //dbEntity.Image = product.Image;
-                    dbEntity.ImageMimeType = product.ImageMimeType;
+                   // dbEntity.ImageMimeType = product.ImageMimeType;
                 }
             }
             context.SaveChanges();
