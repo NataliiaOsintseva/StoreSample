@@ -26,7 +26,7 @@ namespace Store.Models
         //[Required(ErrorMessage = "Specify product color, please")]
         //public Dictionary<ProductColors, bool> Color { get; set; }
 
-        public HttpPostedFileBase Image { get; set; }
-        public string ImageMimeType { get; set; }
+        public byte[] ImageData { get; set; }
+
     }
 }

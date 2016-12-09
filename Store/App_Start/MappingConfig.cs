@@ -15,7 +15,6 @@ namespace Store.App_Start
             AutoMapper.Mapper.Initialize(config =>
             {
                 config.CreateMap<Product, EditProductViewModel>()
-                .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.ImageData))
                 .ReverseMap();
 
                 config.CreateMap<EditProductViewModel, Product>()

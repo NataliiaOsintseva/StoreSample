@@ -24,7 +24,7 @@ namespace Store.Controllers
 
         public EditProductViewModel GetProduct(int productId)
         {
-            Product product = repository.Products.FirstOrDefault(p => p.ProductID == productId);
+            Product product = repository.GetProductById(productId);
             var productView = AutoMapper.Mapper.Map<Product, EditProductViewModel>(product);
             return productView;
         }
@@ -37,24 +37,30 @@ namespace Store.Controllers
         public ViewResult Edit(int productID)
         {
             EditProductViewModel product = GetProduct(productID);
+            TempData["id"] = productID;
             return View(product);
         }
 
         [HttpPost]
-        public ActionResult Edit(EditProductViewModel vm, int productID,  HttpPostedFileBase upload = null)
+        public ActionResult Edit(EditProductViewModel vm, HttpPostedFileBase file = null, int productID = 0)
         {
-
-            var product = Mapper.Map<Product>(vm);
+            productID = (TempData["id"]) != null ? (int)TempData["id"] : 0;
+            TempData.Remove("id");
+            var product = repository.GetProductById(productID);
             if (ModelState.IsValid)
-            {                
-                if (upload != null && upload.ContentLength > 0)
+            {
+                if (file != null)
                 {
-                    product.ImageMimeType = upload.ContentType;
-                    product.ImageData = convertToByteArray(upload);
-
-                    //upload.InputStream.Read(product.Image, 0, upload.ContentLength);
+                    vm.ImageData = convertToByteArray(file);
+                    product.ImageMimeType = file.ContentType;
+                    product.ImageData = vm.ImageData;
                 }
-                repository.Save(product);
+
+                product.Name = vm.Name;
+                product.Description = vm.Description;
+                product.Category = vm.Category;
+                product.Price = vm.Price;              
+                repository.SaveChanges();
                 TempData["message"] = string.Format($"{product.Name} has been saved");
                 return RedirectToAction("Index");
             }
@@ -66,7 +72,7 @@ namespace Store.Controllers
 
         public ViewResult Create()
         {
-            return View("Edit", new Product());
+            return View("Edit", new EditProductViewModel());
         }
          
         [HttpPost]
@@ -83,9 +89,53 @@ namespace Store.Controllers
         private byte[] convertToByteArray(HttpPostedFileBase file)
         {
             byte[] image = null;
-            BinaryReader reader = new BinaryReader(file.InputStream);
-            image = reader.ReadBytes(file.ContentLength);
+            //BinaryReader reader = new BinaryReader(file.InputStream);
+            //image = reader.ReadBytes(file.ContentLength);
+            using (var reader = new System.IO.BinaryReader(file.InputStream))
+            {
+                image = reader.ReadBytes(file.ContentLength);
+
+            }
+
             return image;
         }
+
+        public ActionResult FileUpload(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                string pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/images/profile"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+
+                // save the image path path to the database or you can send image
+                // directly to database
+                // in-case if you want to store byte[] ie. for DB
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    file.InputStream.CopyTo(ms);
+                    byte[] array = ms.GetBuffer();
+                }
+
+            }
+            // after successfully uploading redirect the user
+            return RedirectToAction("Index", "Admin");
+        }
+
+        public FileContentResult GetImage()
+        {
+            Product product = repository.GetProductById(11);
+            if (product != null)
+            {
+                return File(product.ImageData, product.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
     }
 }

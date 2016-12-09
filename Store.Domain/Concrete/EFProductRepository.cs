@@ -30,11 +30,11 @@ namespace Store.Domain.Concrete
             return dbEntity;
         }
 
-        private Product GetProduct(int productID)
+        public Product GetProductById(int productID)
         {
             if (productID == 0)
             {
-                return new Product();
+                return context.Products.Add(new Product());                
             }
             else
             {
