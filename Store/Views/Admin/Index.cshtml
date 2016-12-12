@@ -41,7 +41,14 @@
                 </td>
                 <td class="text-right">@item.Price.ToString("c")</td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImageData)
+            @if (item.ImageMimeType != null)
+            {
+                <div class="pull-left" style="margin-right: 10px">
+                    <img class="img-thumbnail" width="75" height="75"
+                         src="@Url.Action("GetImage", "Product", new { item.ProductID })" />
+                </div>
+
+            }
         </td>
         <td class="text-center">
             @using (Html.BeginForm("Delete", "Admin"))

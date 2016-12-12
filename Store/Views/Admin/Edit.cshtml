@@ -39,13 +39,13 @@
 
             <div class="form-group">
                 <div style="position:relative">
-                    <label>Image</label>
-                    <a class="btn btn-default" href="javascript:;">
-                        Select file to upload
-                        <input type="file" id="Image" name="Image" size="40" style="position:absolute;z-index:2;
-top:0; left:0; filter: alpha(opacity=0); opacity:0; background-color:transparent;color:transparent;"
-                               onchange='$("#upload-file-info").html($(this).val());' />
-                    </a>
+                        
+
+                            <label for="file">Upload Image:</label>
+                            <input type="file" name="file" id="file" style="width: 100%;" />
+                            <input type="submit" value="Upload" class="submit" />
+
+                     
                     <span class="label label-info" id="upload-file-info"></span>
                 </div>
                 @if (Model.ImageData == null)
@@ -64,7 +64,7 @@ top:0; left:0; filter: alpha(opacity=0); opacity:0; background-color:transparent
 
         <div class="panel-footer">
             <input type="submit" value="Save" class="btn btn-success" />
-            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+            @Html.ActionLink("Cancel", "Index", "Admin", new { @class = "btn btn-default" })
 
         </div>
     }

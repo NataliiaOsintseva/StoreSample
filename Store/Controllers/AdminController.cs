@@ -16,6 +16,7 @@ namespace Store.Controllers
     public class AdminController : Controller
     {
         private IProductRepository repository;
+        int secrId;
 
         public AdminController(IProductRepository repo)
         {
@@ -34,24 +35,24 @@ namespace Store.Controllers
             return View(repository.Products);
         }
 
-        public ViewResult Edit(int productID)
+        public ViewResult Edit(int productId)
         {
-            EditProductViewModel product = GetProduct(productID);
-            TempData["id"] = productID;
+            EditProductViewModel product = GetProduct(productId);
+            TempData["id"] = productId;
+            secrId = productId;
             return View(product);
         }
 
         [HttpPost]
-        public ActionResult Edit(EditProductViewModel vm, HttpPostedFileBase file = null, int productID = 0)
+        public ActionResult Edit(EditProductViewModel vm, HttpPostedFileBase file = null)
         {
-            productID = (TempData["id"]) != null ? (int)TempData["id"] : 0;
-            TempData.Remove("id");
+            int productID = (TempData["id"]) != null ? (int)TempData["id"] : 0;
             var product = repository.GetProductById(productID);
             if (ModelState.IsValid)
             {
                 if (file != null)
                 {
-                    vm.ImageData = convertToByteArray(file);
+                    vm.ImageData = convertToByteArray(file);    
                     product.ImageMimeType = file.ContentType;
                     product.ImageData = vm.ImageData;
                 }
@@ -62,6 +63,7 @@ namespace Store.Controllers
                 product.Price = vm.Price;              
                 repository.SaveChanges();
                 TempData["message"] = string.Format($"{product.Name} has been saved");
+                TempData.Remove("id");
                 return RedirectToAction("Index");
             }
             else
@@ -126,7 +128,8 @@ namespace Store.Controllers
 
         public FileContentResult GetImage()
         {
-            Product product = repository.GetProductById(11);
+            int prodId = (int)TempData["id"];
+            Product product = repository.GetProductById(prodId);
             if (product != null)
             {
                 return File(product.ImageData, product.ImageMimeType);
