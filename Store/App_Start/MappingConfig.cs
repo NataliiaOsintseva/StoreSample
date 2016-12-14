@@ -16,9 +16,6 @@ namespace Store.App_Start
             {
                 config.CreateMap<Product, EditProductViewModel>()
                 .ReverseMap();
-
-                config.CreateMap<EditProductViewModel, Product>()
-                .ConvertUsing<EditProductToProductConverter>();
             });
         }
     }

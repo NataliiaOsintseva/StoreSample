@@ -20,22 +20,8 @@ namespace Store.Domain.Entities
 
         public string Category { get; set; }
 
-        //[Required(ErrorMessage = "Specify product color, please")]
-        //public Dictionary<ProductColors, bool> Color { get; set; }
-
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
     }
 
-    public enum ProductColors
-    {
-        Black,
-        Blue,
-        Green,
-        Pink,
-        Red,
-        Violate,
-        White,
-        Yellow
-    }
 }

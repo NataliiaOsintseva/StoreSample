@@ -16,7 +16,6 @@ namespace Store.Controllers
     public class AdminController : Controller
     {
         private IProductRepository repository;
-        int secrId;
 
         public AdminController(IProductRepository repo)
         {
@@ -26,6 +25,7 @@ namespace Store.Controllers
         public EditProductViewModel GetProduct(int productId)
         {
             Product product = repository.GetProductById(productId);
+            
             var productView = AutoMapper.Mapper.Map<Product, EditProductViewModel>(product);
             return productView;
         }
@@ -38,15 +38,14 @@ namespace Store.Controllers
         public ViewResult Edit(int productId)
         {
             EditProductViewModel product = GetProduct(productId);
-            TempData["id"] = productId;
-            secrId = productId;
+            Session["productId"] = productId;
             return View(product);
         }
 
         [HttpPost]
         public ActionResult Edit(EditProductViewModel vm, HttpPostedFileBase file = null)
         {
-            int productID = (TempData["id"]) != null ? (int)TempData["id"] : 0;
+            int productID = (Session["productId"]) != null ? (int)Session["productId"] : 0;
             var product = repository.GetProductById(productID);
             if (ModelState.IsValid)
             {
@@ -63,7 +62,6 @@ namespace Store.Controllers
                 product.Price = vm.Price;              
                 repository.SaveChanges();
                 TempData["message"] = string.Format($"{product.Name} has been saved");
-                TempData.Remove("id");
                 return RedirectToAction("Index");
             }
             else
@@ -91,8 +89,6 @@ namespace Store.Controllers
         private byte[] convertToByteArray(HttpPostedFileBase file)
         {
             byte[] image = null;
-            //BinaryReader reader = new BinaryReader(file.InputStream);
-            //image = reader.ReadBytes(file.ContentLength);
             using (var reader = new System.IO.BinaryReader(file.InputStream))
             {
                 image = reader.ReadBytes(file.ContentLength);
@@ -128,9 +124,9 @@ namespace Store.Controllers
 
         public FileContentResult GetImage()
         {
-            int prodId = (int)TempData["id"];
+            int prodId = (int)Session["productId"];
             Product product = repository.GetProductById(prodId);
-            if (product != null)
+            if (product.ImageData != null)
             {
                 return File(product.ImageData, product.ImageMimeType);
             }
@@ -140,5 +136,13 @@ namespace Store.Controllers
             }
         }
 
+        public IList<SelectListItem> GetColors()
+        {
+            return new List<SelectListItem>
+            {
+                new SelectListItem { Text="Blue", Value="Blue" },
+                new SelectListItem { Text="Pink", Value="Pink" }
+            };
+        }
     }
 }

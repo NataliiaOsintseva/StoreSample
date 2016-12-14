@@ -201,7 +201,6 @@
     <Compile Include="HtmlHelpers\PagingUtils.cs" />
     <Compile Include="Infrastructure\Abstract\IAuthenticated.cs" />
     <Compile Include="Infrastructure\Abstract\IProductModel.cs" />
-    <Compile Include="Infrastructure\Binders\EditProductToProductConverter.cs" />
     <Compile Include="Infrastructure\Binders\CartBinder.cs" />
     <Compile Include="Infrastructure\Concrete\Authenticator.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />

@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Store.Infrastructure.Abstract;
+using Store.Domain.Entities;
+using System.Web.Mvc;
 
 namespace Store.Models
 {
@@ -23,9 +25,7 @@ namespace Store.Models
         [Required(ErrorMessage = "Specify category, please")]
         public string Category { get; set; }
 
-        //[Required(ErrorMessage = "Specify product color, please")]
-        //public Dictionary<ProductColors, bool> Color { get; set; }
-
+        [Display(Name = "Image")]
         public byte[] ImageData { get; set; }
 
     }
