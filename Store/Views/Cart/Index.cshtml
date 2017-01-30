@@ -24,10 +24,10 @@
                 <td class="text-center">@list.Quantity</td>
                 <td class="text-left">@list.Product.Name</td>
                 <td class="text-right">
-                    @list.Product.Price.ToString("c")
+                    @list.Product.Price.ToString("c", Cultures.Netherlands)
             </td>
             <td class="text-right">
-                @((list.Quantity * list.Product.Price).ToString("c"))
+                @((list.Quantity * list.Product.Price).ToString("c", Cultures.Netherlands))
             </td>
                 <td>
                     @using (Html.BeginForm("RemoveFromCart", "Cart"))

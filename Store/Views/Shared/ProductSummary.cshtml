@@ -12,7 +12,7 @@
     }
 
     <h3><strong>@Model.Name</strong>
-        <span class="pull-right label label-primary">@Model.Price.ToString("c")</span>
+        <span class="pull-right label label-primary">@Model.Price.ToString("c", Cultures.Netherlands )</span>
     </h3>
 
     @using (Html.BeginForm("AddToCart", "Cart"))

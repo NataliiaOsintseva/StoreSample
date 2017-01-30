@@ -20,6 +20,28 @@
                 {
                     case "ImageData":
                         break;
+                    case "Category":
+                        <div>
+                            <label>@prop.PropertyName</label>
+                            @Html.DropDownList("Category", new SelectList(Enum.GetValues(typeof(Store.Domain.Entities.Category))),
+                             "Select Category", new { @class = "form-control" })
+
+                        </div>
+                        break;
+                    case "ProductColour":
+                        <div>
+                            <label>@prop.PropertyName</label>
+                            @{ var enumList = Enum.GetValues(typeof(Store.Domain.Entities.Colour)).Cast<Store.Domain.Entities.Colour>();
+                                foreach (var optVal in enumList)
+                                {
+                                    <label>
+                                        @Html.CheckBox(optVal.ToString(), new { value = Convert.ToInt32(optVal).ToString() })
+                                        @optVal
+                                    </label>
+                                }
+                           }
+                        </div>
+                        break;
                     default:
                         <div class="form-group">
                             <label>@prop.PropertyName</label>
@@ -38,10 +60,10 @@
             }
 
             <div class="form-group">
-                <div style="position:relative">                  
-                            <label for="file">Upload Image:</label>
-                            <input type="file" name="file" id="file" style="width: 100%;" />
-                            <span class="label label-info" id="upload-file-info"></span>
+                <div style="position:relative">
+                    <label for="file">Upload Image:</label>
+                    <input type="file" name="file" id="file" style="width: 100%;" />
+                    <span class="label label-info" id="upload-file-info"></span>
                 </div>
                 @if (Model.ImageData == null)
                 {

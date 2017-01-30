@@ -16,5 +16,5 @@
 <div class="navbar-text navbar-right">
     <b class="hidden-xs">Your cart:</b>
     @Model.Lists.Sum(x => x.Quantity) item(s),
-    @Model.CalculateTotalValue().ToString("c")
+    @Model.CalculateTotalValue().ToString("c", Cultures.Netherlands)
 </div>

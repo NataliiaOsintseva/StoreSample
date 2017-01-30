@@ -26,7 +26,7 @@ namespace Store.Controllers
         {
             Product product = repository.GetProductById(productId);
             
-            var productView = AutoMapper.Mapper.Map<Product, EditProductViewModel>(product);
+            var productView = Mapper.Map<Product, EditProductViewModel>(product);
             return productView;
         }
 
@@ -59,6 +59,7 @@ namespace Store.Controllers
                 product.Name = vm.Name;
                 product.Description = vm.Description;
                 product.Category = vm.Category;
+                product.ProductColour = vm.ProductColour;
                 product.Price = vm.Price;              
                 repository.SaveChanges();
                 TempData["message"] = string.Format($"{product.Name} has been saved");

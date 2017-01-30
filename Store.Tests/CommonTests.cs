@@ -25,7 +25,8 @@ namespace Store.Tests
             new Product {ProductID = 3, Name = "P3"},
             new Product {ProductID = 4, Name = "P4"},
             new Product {ProductID = 5, Name = "P5"}
-            });
+            });
+
             ProductController controller = new ProductController(mock.Object);
             controller.PageSize = 3;
 
@@ -49,7 +50,8 @@ namespace Store.Tests
             new Product {ProductID = 3, Name = "P3"},
             new Product {ProductID = 4, Name = "P4"},
             new Product {ProductID = 5, Name = "P5"}
-            });
+            });
+
             ProductController controller = new ProductController(mock.Object);
             controller.PageSize = 4;
 

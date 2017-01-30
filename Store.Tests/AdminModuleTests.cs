@@ -29,8 +29,8 @@ namespace Store.Tests
             }.AsQueryable());
 
             // Prepare data - create controller
-            ProductController controller = new ProductController(mock.Object);
-            ActionResult result = controller.GetImage(0);
+            AdminController controller = new AdminController(mock.Object);
+            ActionResult result = controller.GetImage();
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(FileResult));

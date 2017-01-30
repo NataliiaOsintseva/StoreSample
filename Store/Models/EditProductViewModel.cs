@@ -12,6 +12,7 @@ namespace Store.Models
     public class EditProductViewModel
     {
         [Required(ErrorMessage = "Insert product name, please")]
+        [StringLength(50)]
         public string Name { get; set; }
 
         [DataType(DataType.MultilineText)]
@@ -19,14 +20,19 @@ namespace Store.Models
         public string Description { get; set; }
 
         [Required]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Price cannot have negative value")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Price cannot be less than 0.01 EUR")]
         public decimal Price { get; set; }
 
         [Required(ErrorMessage = "Specify category, please")]
         public string Category { get; set; }
 
+        [Required(ErrorMessage = "Specify colour, please")]
+        [Display(Name = "Colour")]
+        public string [] ProductColour { get; set; }
+
         [Display(Name = "Image")]
         public byte[] ImageData { get; set; }
 
     }
+
 }

@@ -67,6 +67,7 @@ namespace Store.Domain.Concrete
                     dbEntity.Name = product.Name;
                     dbEntity.Description = product.Description;
                     dbEntity.Category = product.Category;
+                    dbEntity.ProductColour = product.ProductColour;
                     dbEntity.Price = product.Price;
                     dbEntity.ImageData = product.ImageData;
                     dbEntity.ImageMimeType = product.ImageMimeType;

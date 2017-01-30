@@ -12,16 +12,49 @@ namespace Store.Domain.Entities
     {
         public int ProductID { get; set; }
 
+        [Required]
+        [StringLength(50)]
         public string Name { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
+        [Required]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Price cannot be less than 0.01 EUR")]
         public decimal Price { get; set; }
 
+        [Required]
         public string Category { get; set; }
 
+        [Display(Name = "Image")]
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
+
+        [Required]
+        [Display(Name = "Colour")]
+        public string[] ProductColour { get; set; }
+    }
+
+    public enum Category
+    {
+        Bedroom,
+        LivingRoom,
+        Kitchen,
+        Bathroom,
+        Other
+    }
+
+    public enum Colour
+    {
+        White,
+        Pink,
+        Purple,
+        Red,
+        Green,
+        Blue,
+        Black,
+        Yellow,
+        Other
     }
 
 }
