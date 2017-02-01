@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -30,6 +31,37 @@ namespace Store.HtmlHelpers
             }
             return MvcHtmlString.Create(result.ToString());
 
+        }
+
+        public static MvcHtmlString TextEditingFormControl<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
+        {
+            var name = ExpressionHelper.GetExpressionText(expression);
+            var metadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData).PropertyName;
+
+            StringBuilder result = new StringBuilder();
+            TagBuilder container = new TagBuilder("div");
+
+            container.MergeAttribute("class", "form-group");
+
+            TagBuilder childTag = new TagBuilder("label");           
+            TagBuilder extraTag;
+
+            extraTag = (metadata == "Description") ? new TagBuilder("textarea") : new TagBuilder("input");
+
+            if (metadata == "Description")
+            {
+                extraTag.MergeAttribute("rows", "5");
+            }
+            else
+            {
+                extraTag.MergeAttribute("type", "text");
+            }
+
+            childTag.InnerHtml = extraTag.ToString();
+            container.InnerHtml = childTag.ToString();
+            result.Append(container.ToString());
+
+            return MvcHtmlString.Create(result.ToString());
         }
     }
 }
