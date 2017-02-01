@@ -24,15 +24,24 @@ namespace Store.Models
         public decimal Price { get; set; }
 
         [Required(ErrorMessage = "Specify category, please")]
-        public string Category { get; set; }
+        public Category Category { get; set; }
 
-        [Required(ErrorMessage = "Specify colour, please")]
+        //[Required(ErrorMessage = "Specify colour, please")]
         [Display(Name = "Colour")]
         public string [] ProductColour { get; set; }
 
         [Display(Name = "Image")]
         public byte[] ImageData { get; set; }
 
+    }
+
+    public enum Category
+    {
+        Bedroom,
+        LivingRoom,
+        Kitchen,
+        Bathroom,
+        Other
     }
 
 }

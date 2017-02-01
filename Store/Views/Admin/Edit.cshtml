@@ -10,10 +10,17 @@
         <h3>Editing @Model.Name</h3>
     </div>
 
+
+
     @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
+               
         <div class="panel-body">
+            @Html.TextEditingFormControl(m => m.Name)
+            @Html.TextEditingFormControl(m => m.Description)
+            @Html.EnumDropDownListFor(m => m.Category)
+
             @foreach (var prop in ViewData.ModelMetadata.Properties)
             {
                 switch (prop.PropertyName)
@@ -23,8 +30,7 @@
                     case "Category":
                         <div>
                             <label>@prop.PropertyName</label>
-                            @Html.DropDownList("Category", new SelectList(Enum.GetValues(typeof(Store.Domain.Entities.Category))),
-                             "Select Category", new { @class = "form-control" })
+
 
                         </div>
                         break;

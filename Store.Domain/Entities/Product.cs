@@ -29,20 +29,19 @@ namespace Store.Domain.Entities
         [Display(Name = "Image")]
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
-
-        [Required]
+        
         [Display(Name = "Colour")]
         public string[] ProductColour { get; set; }
     }
 
-    public enum Category
-    {
-        Bedroom,
-        LivingRoom,
-        Kitchen,
-        Bathroom,
-        Other
-    }
+    //public enum Category
+    //{
+    //    Bedroom,
+    //    LivingRoom,
+    //    Kitchen,
+    //    Bathroom,
+    //    Other
+    //}
 
     public enum Colour
     {

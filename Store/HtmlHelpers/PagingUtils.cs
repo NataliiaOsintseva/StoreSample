@@ -43,7 +43,8 @@ namespace Store.HtmlHelpers
 
             container.MergeAttribute("class", "form-group");
 
-            TagBuilder childTag = new TagBuilder("label");           
+            TagBuilder label = new TagBuilder("label");
+            label.InnerHtml = metadata;
             TagBuilder extraTag;
 
             extraTag = (metadata == "Description") ? new TagBuilder("textarea") : new TagBuilder("input");
@@ -56,9 +57,9 @@ namespace Store.HtmlHelpers
             {
                 extraTag.MergeAttribute("type", "text");
             }
-
-            childTag.InnerHtml = extraTag.ToString();
-            container.InnerHtml = childTag.ToString();
+            
+            var mergedTag = string.Concat(label.ToString(), extraTag.ToString());
+            container.InnerHtml = mergedTag;
             result.Append(container.ToString());
 
             return MvcHtmlString.Create(result.ToString());

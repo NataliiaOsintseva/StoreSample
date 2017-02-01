@@ -25,7 +25,7 @@ namespace Store.Controllers
         public EditProductViewModel GetProduct(int productId)
         {
             Product product = repository.GetProductById(productId);
-            
+
             var productView = Mapper.Map<Product, EditProductViewModel>(product);
             return productView;
         }
@@ -51,23 +51,23 @@ namespace Store.Controllers
             {
                 if (file != null)
                 {
-                    vm.ImageData = convertToByteArray(file);    
+                    vm.ImageData = convertToByteArray(file);
                     product.ImageMimeType = file.ContentType;
                     product.ImageData = vm.ImageData;
                 }
 
                 product.Name = vm.Name;
                 product.Description = vm.Description;
-                product.Category = vm.Category;
+                product.Category = vm.Category.ToString();
                 product.ProductColour = vm.ProductColour;
-                product.Price = vm.Price;              
+                product.Price = vm.Price;
                 repository.SaveChanges();
                 TempData["message"] = string.Format($"{product.Name} has been saved");
                 return RedirectToAction("Index");
             }
             else
             {
-                return View(product);
+                return View(vm);
             }
         }
 
@@ -75,7 +75,7 @@ namespace Store.Controllers
         {
             return View("Edit", new EditProductViewModel());
         }
-         
+
         [HttpPost]
         public ActionResult Delete(int productId)
         {

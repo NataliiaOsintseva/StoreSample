@@ -44,7 +44,7 @@
         <tr>
             <td colspan="3" class="text-right">Total:</td>
             <td class="text-right">
-                @Model.Cart.CalculateTotalValue().ToString("c")
+                @Model.Cart.CalculateTotalValue().ToString("c", Cultures.Netherlands)
             </td>
         </tr>
     </tfoot>
