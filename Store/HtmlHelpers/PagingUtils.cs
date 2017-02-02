@@ -48,7 +48,7 @@ namespace Store.HtmlHelpers
             TagBuilder extraTag;
 
             extraTag = (metadata == "Description") ? new TagBuilder("textarea") : new TagBuilder("input");
-
+            extraTag.MergeAttribute("class", "form-control");
             if (metadata == "Description")
             {
                 extraTag.MergeAttribute("rows", "5");

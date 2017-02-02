@@ -43,17 +43,17 @@ namespace Store.Domain.Entities
     //    Other
     //}
 
-    public enum Colour
-    {
-        White,
-        Pink,
-        Purple,
-        Red,
-        Green,
-        Blue,
-        Black,
-        Yellow,
-        Other
-    }
+    //public enum Colour
+    //{
+    //    White,
+    //    Pink,
+    //    Purple,
+    //    Red,
+    //    Green,
+    //    Blue,
+    //    Black,
+    //    Yellow,
+    //    Other
+    //}
 
 }

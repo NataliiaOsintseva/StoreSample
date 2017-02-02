@@ -27,6 +27,12 @@
             <th class="text-right">
                 @Html.DisplayNameFor(model => model.ImageData)
             </th>
+            <th class="text-right">
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th class="text-right">
+                @Html.DisplayNameFor(model => model.ProductColour)
+            </th>
             <th class="text-center">Actions</th>
         </tr>
 
@@ -50,6 +56,12 @@
 
             }
         </td>
+                <td class="text-right">
+                    @item.Category
+                </td>
+                <td class="text-right">
+                    @item.ProductColour
+                </td>
         <td class="text-center">
             @using (Html.BeginForm("Delete", "Admin"))
             {

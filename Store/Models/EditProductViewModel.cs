@@ -28,7 +28,7 @@ namespace Store.Models
 
         //[Required(ErrorMessage = "Specify colour, please")]
         [Display(Name = "Colour")]
-        public string [] ProductColour { get; set; }
+        public string[] ProductColour { get; set; }
 
         [Display(Name = "Image")]
         public byte[] ImageData { get; set; }
@@ -41,6 +41,19 @@ namespace Store.Models
         LivingRoom,
         Kitchen,
         Bathroom,
+        Other
+    }
+
+    public enum Colour
+    {
+        White,
+        Pink,
+        Purple,
+        Red,
+        Green,
+        Blue,
+        Black,
+        Yellow,
         Other
     }
 
