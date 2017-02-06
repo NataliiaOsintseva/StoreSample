@@ -28,16 +28,18 @@ namespace Store.Models
 
         //[Required(ErrorMessage = "Specify colour, please")]
         [Display(Name = "Colour")]
-        public string[] ProductColour { get; set; }
+        public IDictionary<string, bool> ProductColour { get; set; }
 
         [Display(Name = "Image")]
         public byte[] ImageData { get; set; }
+
 
     }
 
     public enum Category
     {
         Bedroom,
+        [Display(Name = "Living Room")]
         LivingRoom,
         Kitchen,
         Bathroom,

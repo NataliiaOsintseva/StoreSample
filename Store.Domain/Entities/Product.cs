@@ -31,7 +31,7 @@ namespace Store.Domain.Entities
         public string ImageMimeType { get; set; }
         
         [Display(Name = "Colour")]
-        public string[] ProductColour { get; set; }
+        public IDictionary<string, bool> ProductColour { get; set; }
     }
 
     //public enum Category

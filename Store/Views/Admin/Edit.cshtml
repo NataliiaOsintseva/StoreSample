@@ -21,17 +21,13 @@
             <div class="form-group"><label>Description</label>@Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 5 })</div>
             <div class="form-group"><label>Category</label>@Html.EnumDropDownListFor(m => m.Category, new { @class = "form-control" })</div>
             <div class="form-group"><label>Price</label>@Html.TextBoxFor(m => m.Price, new { @class = "form-control", size = 15 })</div>
-
             @{
                 <div>
                     <label>Product Colour</label>
-                    @{var enumList = Enum.GetValues(typeof(Colour));
-                        foreach (var optVal in enumList)
+                    @{foreach (var item in @Model.ProductColour )
                         {
-                            <label>
-                                @Html.CheckBox(optVal.ToString(), new { value = Convert.ToInt32(optVal).ToString() })
-                                @optVal
-                            </label>
+                            <input id="chk@(item.Value)" type="checkbox" value="@item.Value" checked="@item.Value"/>
+                            @item.Key.ToString()
                         }
                     }
                 </div>

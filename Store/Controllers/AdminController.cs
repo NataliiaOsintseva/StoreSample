@@ -38,6 +38,11 @@ namespace Store.Controllers
         public ViewResult Edit(int productId)
         {
             EditProductViewModel product = GetProduct(productId);
+            product.ProductColour = new Dictionary<string, bool>()
+            {
+                { Colour.Yellow.ToString(), false },
+                { Colour.Black.ToString(), true }
+            };
             Session["productId"] = productId;
             return View(product);
         }
