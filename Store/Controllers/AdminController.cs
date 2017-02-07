@@ -38,11 +38,6 @@ namespace Store.Controllers
         public ViewResult Edit(int productId)
         {
             EditProductViewModel product = GetProduct(productId);
-            product.ProductColour = new Dictionary<string, bool>()
-            {
-                { Colour.Yellow.ToString(), false },
-                { Colour.Black.ToString(), true }
-            };
             Session["productId"] = productId;
             return View(product);
         }
@@ -64,7 +59,7 @@ namespace Store.Controllers
                 product.Name = vm.Name;
                 product.Description = vm.Description;
                 product.Category = vm.Category.ToString();
-                product.ProductColour = vm.ProductColour;
+               // product.Colour = vm.Colour;
                 product.Price = vm.Price;
                 repository.SaveChanges();
                 TempData["message"] = string.Format($"{product.Name} has been saved");

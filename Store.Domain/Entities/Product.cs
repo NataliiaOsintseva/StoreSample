@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using Store.Domain.Concrete;
 
 namespace Store.Domain.Entities
 {
@@ -13,7 +14,7 @@ namespace Store.Domain.Entities
         public int ProductID { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string Name { get; set; }
 
         [Required]
@@ -29,31 +30,8 @@ namespace Store.Domain.Entities
         [Display(Name = "Image")]
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
-        
+
         [Display(Name = "Colour")]
-        public IDictionary<string, bool> ProductColour { get; set; }
+        public List<Colour> Colour { get; set; }
     }
-
-    //public enum Category
-    //{
-    //    Bedroom,
-    //    LivingRoom,
-    //    Kitchen,
-    //    Bathroom,
-    //    Other
-    //}
-
-    //public enum Colour
-    //{
-    //    White,
-    //    Pink,
-    //    Purple,
-    //    Red,
-    //    Green,
-    //    Blue,
-    //    Black,
-    //    Yellow,
-    //    Other
-    //}
-
 }

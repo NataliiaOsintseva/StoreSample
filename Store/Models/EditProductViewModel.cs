@@ -6,6 +6,7 @@ using System.Web;
 using Store.Infrastructure.Abstract;
 using Store.Domain.Entities;
 using System.Web.Mvc;
+using Store.Domain.Concrete;
 
 namespace Store.Models
 {
@@ -27,8 +28,8 @@ namespace Store.Models
         public Category Category { get; set; }
 
         //[Required(ErrorMessage = "Specify colour, please")]
-        [Display(Name = "Colour")]
-        public IDictionary<string, bool> ProductColour { get; set; }
+       // [Display(Name = "Colour")]
+        //public List<Colour> Colour { get; set; }
 
         [Display(Name = "Image")]
         public byte[] ImageData { get; set; }
@@ -43,19 +44,6 @@ namespace Store.Models
         LivingRoom,
         Kitchen,
         Bathroom,
-        Other
-    }
-
-    public enum Colour
-    {
-        White,
-        Pink,
-        Purple,
-        Red,
-        Green,
-        Blue,
-        Black,
-        Yellow,
         Other
     }
 

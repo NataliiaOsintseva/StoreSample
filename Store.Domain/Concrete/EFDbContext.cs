@@ -10,5 +10,11 @@ namespace Store.Domain.Concrete
     public class EFDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Colour> Colours { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
