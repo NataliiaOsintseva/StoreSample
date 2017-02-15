@@ -5,13 +5,15 @@ using System.Linq;
 using System.Web;
 using Store.Domain.Entities;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Data.Entity.Infrastructure;
 
 namespace Store.Domain.Concrete
 {
     public class EFProductRepository : IProductRepository
     {
         private EFDbContext context = new EFDbContext();
-        public IEnumerable<Product> Products
+        public DbSet<Product> Products
         {
             get
             {
@@ -53,27 +55,20 @@ namespace Store.Domain.Concrete
         }
 
 
-        public void Save(Product product)
+        public void Save(int productId)
         {
-            if (product.ProductID == 0)
+            Product dbEntity = context.Products.Find(productId);
+            try { context.SaveChanges(); }
+            catch (DbUpdateException ex)
             {
-                context.Products.Add(product);
+                var errorMessages = ex.Data;
+
+                var fullErrorMessage = string.Join("; ", errorMessages);
+
+                var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+
+                throw new DbUpdateException(exceptionMessage, ex.InnerException);
             }
-            else
-            {
-                Product dbEntity = context.Products.Find(product.ProductID);
-                if(dbEntity != null)
-                {
-                    dbEntity.Name = product.Name;
-                    dbEntity.Description = product.Description;
-                    dbEntity.Category = product.Category;
-                   // dbEntity.ProductColour = product.ProductColour;
-                    dbEntity.Price = product.Price;
-                    dbEntity.ImageData = product.ImageData;
-                    dbEntity.ImageMimeType = product.ImageMimeType;
-                }
-            }
-            context.SaveChanges();
         }
     }
 }

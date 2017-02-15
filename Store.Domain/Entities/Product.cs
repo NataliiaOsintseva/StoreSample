@@ -31,7 +31,6 @@ namespace Store.Domain.Entities
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
 
-        [Display(Name = "Colour")]
-        public List<Colour> Colour { get; set; }
+        public virtual ICollection<Colour> Colours { get; set; }
     }
 }

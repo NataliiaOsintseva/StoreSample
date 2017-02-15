@@ -31,7 +31,7 @@
                 @Html.DisplayNameFor(model => model.Category)
             </th>
             <th class="text-right">
-                @Html.DisplayNameFor(model => model.ProductColour)
+                @Html.DisplayNameFor(model => model.Colours)
             </th>
             <th class="text-center">Actions</th>
         </tr>
@@ -60,7 +60,7 @@
                     @item.Category
                 </td>
                 <td class="text-right">
-                    @item.ProductColour
+                    @item.Colours
                 </td>
         <td class="text-center">
             @using (Html.BeginForm("Delete", "Admin"))

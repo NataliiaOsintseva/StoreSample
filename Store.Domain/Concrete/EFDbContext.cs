@@ -14,7 +14,16 @@ namespace Store.Domain.Concrete
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.Colours)
+                .WithMany(c => c.Products)
+                .Map(pc => 
+                {
+                    pc.MapLeftKey("ProductID");
+                    pc.MapRightKey("ColorId");
+                    pc.ToTable("products_colours_junction");
+                });
+                
         }
     }
 }

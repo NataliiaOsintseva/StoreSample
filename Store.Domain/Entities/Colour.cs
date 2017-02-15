@@ -5,9 +5,9 @@ using System.Web;
 using Store.Domain.Abstract;
 using Store.Domain.Entities;
 
-namespace Store.Domain.Concrete
+namespace Store.Domain.Entities
 {
-    public class Colour : IProductProperty
+    public class Colour
     {
         public int Id { get; set; }
 
@@ -15,8 +15,6 @@ namespace Store.Domain.Concrete
 
         public bool IsSelected { get; set; }
 
-        public int? ProductId { get; set; }
-
-        public List<Product> Products { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

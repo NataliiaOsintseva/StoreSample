@@ -205,6 +205,7 @@
     <Compile Include="Infrastructure\Binders\CartBinder.cs" />
     <Compile Include="Infrastructure\Concrete\Authenticator.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\AdminIndexViewModel.cs" />
     <Compile Include="Models\CartListViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />

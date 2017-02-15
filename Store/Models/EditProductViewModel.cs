@@ -28,8 +28,8 @@ namespace Store.Models
         public Category Category { get; set; }
 
         //[Required(ErrorMessage = "Specify colour, please")]
-       // [Display(Name = "Colour")]
-        //public List<Colour> Colour { get; set; }
+        // [Display(Name = "Colour")]
+        public virtual ICollection<Colour> Colour { get; set; }
 
         [Display(Name = "Image")]
         public byte[] ImageData { get; set; }

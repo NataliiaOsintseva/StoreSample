@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.IO;
 using Store.Models;
 using AutoMapper;
+using System.Data.Entity;
 
 namespace Store.Controllers
 {
@@ -16,6 +17,7 @@ namespace Store.Controllers
     public class AdminController : Controller
     {
         private IProductRepository repository;
+        private EFDbContext db;
 
         public AdminController(IProductRepository repo)
         {
@@ -37,13 +39,15 @@ namespace Store.Controllers
 
         public ViewResult Edit(int productId)
         {
-            EditProductViewModel product = GetProduct(productId);
+            //EditProductViewModel product = GetProduct(productId);
+            Product product = repository.Products.Include(p => p.Colours).Where(p => p.ProductID == productId).Single();
+
             Session["productId"] = productId;
             return View(product);
         }
 
         [HttpPost]
-        public ActionResult Edit(EditProductViewModel vm, HttpPostedFileBase file = null)
+        public ActionResult Edit(Product vm, HttpPostedFileBase file = null)
         {
             int productID = (Session["productId"]) != null ? (int)Session["productId"] : 0;
             var product = repository.GetProductById(productID);
@@ -61,7 +65,7 @@ namespace Store.Controllers
                 product.Category = vm.Category.ToString();
                // product.Colour = vm.Colour;
                 product.Price = vm.Price;
-                repository.SaveChanges();
+                repository.Save(productID);
                 TempData["message"] = string.Format($"{product.Name} has been saved");
                 return RedirectToAction("Index");
             }
